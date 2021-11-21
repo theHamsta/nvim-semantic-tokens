@@ -1,0 +1,88 @@
+*nvim-treesitter*  Treesitter configurations and abstraction layer for Neovim.
+
+Minimum version of neovim: nightly
+
+Authors:
+  Stephan Seitz <stephan.seitz@fau.de>
+
+==============================================================================
+HIGHLIGHTING                                            *nvim-semantic-tokens*
+
+                                               *lsp-highlight-semantic-tokens*
+Some language server support semantic highlighting via |lsp-semantic_tokens|.
+Semantic tokens defined by the server can have a type (SemanticTokenTypes) and
+a list of modifiers (SemanticTokenModifiers). More information on the
+available types and modifiers can be found here:
+https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide#semantic-token-classification
+https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_semanticTokens
+
+Neovim will use the following highlight groups to highlight
+SemanticTokenTypes:
+
+                                                              *hl-LspNamespace*
+  LspNamespace
+                                                                   *hl-LspType*
+  LspType
+                                                                  *hl-LspClass*
+  LspClass
+                                                                   *hl-LspEnum*
+  LspEnum
+                                                              *hl-LspInterface*
+  LspInterface
+                                                                 *hl-LspStruct*
+  LspStruct
+                                                          *hl-LspTypeParameter*
+  LspTypeParameter
+                                                              *hl-LspParameter*
+  LspParameter
+                                                               *hl-LspVariable*
+  LspVariable
+                                                               *hl-LspProperty*
+  LspProperty
+                                                             *hl-LspEnumMember*
+  LspEnumMember
+                                                                  *hl-LspEvent*
+  LspEvent
+                                                               *hl-LspFunction*
+  LspFunction
+                                                                 *hl-LspMethod*
+  LspMethod
+                                                                  *hl-LspMacro*
+  LspMacro
+                                                                *hl-LspKeyword*
+  LspKeyword
+                                                               *hl-LspModifier*
+  LspModifier
+                                                                *hl-LspComment*
+  LspComment
+                                                                 *hl-LspString*
+  LspString
+                                                                 *hl-LspNumber*
+  LspNumber
+                                                                  *hl-LspRegex*
+  LspRegexp
+                                                               *hl-LspOperator*
+  LspOperator
+
+And the following highlight groups modifiers SemanticTokenModifiers:
+
+                                                               *hl-Declaration*
+  LspDeclaration
+                                                                *hl-Definition*
+  LspDefinition
+                                                                  *hl-Readonly*
+  LspReadonly
+                                                                    *hl-Static*
+  LspStatic
+                                                                *hl-Deprecated*
+  LspDeprecated
+                                                                  *hl-Abstract*
+  LspAbstract
+                                                                     *hl-Async*
+  LspAsync
+                                                              *hl-Modification*
+  LspModification
+                                                             *hl-Documentation*
+  LspDocumentation
+                                                            *hl-DefaultLibrary*
+  LspDefaultLibrary
