@@ -56,7 +56,7 @@ local function highlight(buf, token, hl)
   vim.highlight.range(buf, ns, hl, { token.line, token.start_char }, { token.line, token.start_char + token.length })
 end
 
-function M.highlight_token(ctx, token)
+local function highlight_token(ctx, token)
   local buf = ctx.bufnr
   local ft = vim.api.nvim_buf_get_option(buf, "filetype")
   local ft_token_cache = token_cache[ft]
@@ -79,14 +79,14 @@ function M.highlight_token(ctx, token)
   end
 end
 
-function M.clear_highlights(ctx, line_start, line_end)
+local function clear_highlights(ctx, line_start, line_end)
   vim.api.nvim_buf_clear_namespace(ctx.bufnr, ns, line_start, line_end)
 end
 
 function M.setup(config)
   vim.lsp.handlers["textDocument/semanticTokens/full"] = vim.lsp.with(semantic_tokens.on_full, {
-    on_token = M.highlight_token,
-    on_invalidate_range = M.clear_highlights,
+    on_token = highlight_token,
+    on_invalidate_range = clear_highlights,
   })
   if config.preset then
     vim.cmd("luafile " .. utils.get_preset_file(config.preset))
