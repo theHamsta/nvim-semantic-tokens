@@ -88,7 +88,8 @@ function M.setup(config)
     on_token = highlight_token,
     on_invalidate_range = clear_highlights,
   })
-  if config.preset then
+  vim.cmd("luafile " .. utils.get_preset_file "default")
+  if config.preset and config.preset ~= "default" then
     vim.cmd("luafile " .. utils.get_preset_file(config.preset))
   end
   reset_cache()
