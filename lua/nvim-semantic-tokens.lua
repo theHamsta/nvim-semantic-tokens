@@ -44,8 +44,8 @@ local function make_cache(base_map)
   })
 end
 
-local token_cache = make_cache(M.token_map)
-local modifiers_cache = make_cache(M.modifiers_map)
+local token_cache
+local modifiers_cache
 
 local function reset_cache()
   token_cache = make_cache(M.token_map)
