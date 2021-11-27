@@ -10,6 +10,16 @@ require'nvim-semantic-tokens'.setup({
 })
 ```
 
+You might want to do a feature tests when you plan to add the snippet above to your config:
+
+```lua
+if pcall(require, "vim.lsp.nvim-semantic-tokens") then
+  require("nvim-semantic-tokens").setup {
+    preset = "default"
+  }
+end
+```
+
 Preset configurations are loaded from [./lua/nvim-semantic-tokens/presets](./lua/nvim-semantic-tokens/presets).
 The `"default"` preset will set the highlight groups described in [./doc/nvim-semantic-tokens.txt](./doc/nvim-semantic-tokens.txt).
 
