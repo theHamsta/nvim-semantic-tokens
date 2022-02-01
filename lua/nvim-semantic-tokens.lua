@@ -53,7 +53,13 @@ local function reset_cache()
 end
 
 local function highlight(buf, token, hl)
-  vim.highlight.range(buf, ns, hl, { token.line, token.start_char }, { token.line, token.start_char + token.length })
+  vim.api.nvim_buf_set_extmark(buf, ns, token.line, token.start_char, {
+    end_row = token.line,
+    end_col = token.start_char+token.length,
+    hl_group = hl,
+  -- Highlights from treesitter have prio 100, set prio for semantic tokens just above that
+    priority = 101
+  })
 end
 
 local function highlight_token(ctx, token)
