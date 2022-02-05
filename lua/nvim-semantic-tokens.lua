@@ -55,10 +55,10 @@ end
 local function highlight(buf, token, hl)
   vim.api.nvim_buf_set_extmark(buf, ns, token.line, token.start_char, {
     end_row = token.line,
-    end_col = token.start_char+token.length,
+    end_col = token.start_char + token.length,
     hl_group = hl,
-  -- Highlights from treesitter have prio 100, set prio for semantic tokens just above that
-    priority = 101
+    -- Highlights from tree-sitter have priority 100, set priority for semantic tokens just above that
+    priority = 101,
   })
 end
 
