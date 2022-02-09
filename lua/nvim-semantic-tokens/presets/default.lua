@@ -1,4 +1,4 @@
-local semantic_tokens = require'nvim-semantic-tokens'
+local semantic_tokens = require'nvim-semantic-tokens.table-highlighter'
 
 semantic_tokens.token_map = {
   namespace = "LspNamespace",
