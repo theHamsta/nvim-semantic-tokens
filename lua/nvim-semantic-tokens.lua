@@ -11,7 +11,7 @@ local function highlight(ctx, token, hl)
   local end_byte = vim.lsp.util._str_byteindex_enc(line_str, token.start_char + token.length, token.offset_encoding)
   vim.api.nvim_buf_set_extmark(ctx.bufnr, ns, token.line, start_byte, {
     end_row = token.line,
-    end_col = end_byte,
+    end_col = math.min(end_byte, #line_str),
     hl_group = hl,
     -- Highlights from tree-sitter have priority 100, set priority for semantic tokens just above that
     priority = 110,
