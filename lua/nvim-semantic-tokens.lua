@@ -5,19 +5,22 @@ local utils = require "nvim-semantic-tokens.utils"
 local semantic_tokens = require "vim.lsp.semantic_tokens"
 local ns = vim.api.nvim_create_namespace "nvim-semantic-tokens"
 
-local function highlight(buf, token, hl)
-  vim.api.nvim_buf_set_extmark(buf, ns, token.line, token.start_char, {
+local function highlight(ctx, token, hl)
+  local line_str = vim.api.nvim_buf_get_lines(ctx.bufnr, token.line, token.line + 1, false)[1]
+  local start_byte = vim.lsp.util._str_byteindex_enc(line_str, token.start_char, token.offset_encoding)
+  local end_byte = vim.lsp.util._str_byteindex_enc(line_str, token.start_char + token.length, token.offset_encoding)
+  vim.api.nvim_buf_set_extmark(ctx.bufnr, ns, token.line, start_byte, {
     end_row = token.line,
-    end_col = token.start_char + token.length,
+    end_col = end_byte,
     hl_group = hl,
     -- Highlights from tree-sitter have priority 100, set priority for semantic tokens just above that
-    priority = 101,
+    priority = 110,
   })
 end
 
 local function highlight_token(ctx, token)
   local function highlight_fn(hl)
-    highlight(ctx.bufnr, token, hl)
+    highlight(ctx, token, hl)
   end
   for _, highlighter in ipairs(highlighters) do
     if type(highlighter) == 'table'then
