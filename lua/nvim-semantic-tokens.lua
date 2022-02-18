@@ -7,8 +7,10 @@ local ns = vim.api.nvim_create_namespace "nvim-semantic-tokens"
 
 local function highlight(ctx, token, hl)
   local line_str = vim.api.nvim_buf_get_lines(ctx.bufnr, token.line, token.line + 1, false)[1]
-  local start_byte = vim.lsp.util._str_byteindex_enc(line_str, token.start_char, token.offset_encoding)
-  local end_byte = vim.lsp.util._str_byteindex_enc(line_str, token.start_char + token.length, token.offset_encoding)
+  local ok, start_byte = pcall(vim.lsp.util._str_byteindex_enc, line_str, token.start_char, token.offset_encoding)
+  if not ok then return end
+  local ok, end_byte = pcall(vim.lsp.util._str_byteindex_enc, line_str, token.start_char + token.length, token.offset_encoding)
+  if not ok then return end
   if #line_str == 0 then return end
   vim.api.nvim_buf_set_extmark(ctx.bufnr, ns, token.line, start_byte, {
     end_row = token.line,
