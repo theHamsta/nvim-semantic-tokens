@@ -54,7 +54,6 @@ function M.highlight_token(ctx, token, highlight)
   local ft = vim.api.nvim_buf_get_option(buf, "filetype")
   local ft_token_cache = token_cache[ft]
   local ft_modifiers_cache = modifiers_cache[ft]
-  local hls
 
   local hl = ft_token_cache[token.type]
   if hl then
@@ -68,7 +67,7 @@ function M.highlight_token(ctx, token, highlight)
       hl = hl[token.type]
     end
     if hl then
-      highlight(hls, hl)
+      highlight(hl)
     end
   end
 end
