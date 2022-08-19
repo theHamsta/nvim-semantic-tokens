@@ -12,7 +12,8 @@ ignore = {
   "411", -- Redefining a local variable.
   "412", -- Redefining an argument.
   "422", -- Shadowing an argument
-  "122" -- Indirectly setting a readonly global
+  "122", -- Indirectly setting a readonly global
+  "431", -- Shadowing an upvalue
 }
 
 -- Global objects defined by the C code
