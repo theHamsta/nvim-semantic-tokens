@@ -8,14 +8,6 @@ If Neovim is built without https://github.com/neovim/neovim/pull/15723
 ## Setup
 
 ```lua
-require'nvim-semantic-tokens'.setup({
-  preset = "default"
-})
-```
-
-You might want to do a feature tests when you plan to add the snippet above to your config:
-
-```lua
 require("nvim-semantic-tokens").setup {
   preset = "default"
   -- highlighters is a list of modules following the interface of nvim-semantic-tokens.table-highlighter or 
