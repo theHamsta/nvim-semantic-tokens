@@ -43,3 +43,10 @@ local on_attach = function(client, bufnr)
 end
 ```
 
+## Language Servers with Semantic Token Support
+
+- clangd
+- rust-analyzer
+- sumneko-lua
+- pyright
+- ...
