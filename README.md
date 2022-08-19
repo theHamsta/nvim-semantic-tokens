@@ -26,6 +26,7 @@ require("nvim-semantic-tokens").setup {
 
 Preset configurations are loaded from [./lua/nvim-semantic-tokens/presets](./lua/nvim-semantic-tokens/presets).
 The `"default"` preset will set the highlight groups described in [./doc/nvim-semantic-tokens.txt](./doc/nvim-semantic-tokens.txt).
+Please map them to colors or highlight groups you like to actually see semantic highlights.
 
 Use an autocommand for a filetype for which you have a language server set up that supports semantic tokens (e.g. clangd)
 
