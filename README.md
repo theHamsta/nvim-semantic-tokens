@@ -35,6 +35,7 @@ or inside an `on_attach` call to a LSP client
 
 ```lua
 local on_attach = function(client, bufnr)
+    local caps = client.server_capabilities
     if caps.semanticTokensProvider and caps.semanticTokensProvider.full then
         vim.cmd [[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.buf.semantic_tokens_full()]]
     end
