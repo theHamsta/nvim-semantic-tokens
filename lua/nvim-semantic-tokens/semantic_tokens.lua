@@ -1,6 +1,7 @@
 local M = {}
 
 local last_tick = {}
+local last_successful_tick = {}
 local active_requests = {}
 
 ---@private
@@ -102,6 +103,7 @@ function M.on_full(err, response, ctx, config)
       config.on_token(ctx, token)
     end
   end
+  last_successful_tick[ctx.bufnr] = last_tick[ctx.bufnr]
 end
 
 --- |lsp-handler| for the method `textDocument/semanticTokens/refresh`
@@ -137,7 +139,7 @@ function M.refresh(bufnr)
   end
   if not active_requests[bufnr] then
     local params = { textDocument = { uri = vim.uri_from_bufnr(bufnr) } }
-    if not last_tick[bufnr] or last_tick[bufnr] < vim.api.nvim_buf_get_changedtick(bufnr) then
+    if not last_successful_tick[bufnr] or last_successful_tick[bufnr] < vim.api.nvim_buf_get_changedtick(bufnr) then
       M._save_tick(bufnr)
       vim.lsp.buf_request(bufnr, 'textDocument/semanticTokens/full', params)
     end
