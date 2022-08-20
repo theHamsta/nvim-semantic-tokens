@@ -2,8 +2,9 @@
 
 This is a reference plugin to assist the development of https://github.com/neovim/neovim/pull/15723
 
-This plugin will use a local copy of https://github.com/neovim/neovim/pull/15723.
-If Neovim is built without https://github.com/neovim/neovim/pull/15723
+This plugin will use a local copy of https://github.com/neovim/neovim/pull/15723
+if Neovim is built without https://github.com/neovim/neovim/pull/15723. Nightly
+Neovim is still required.
 
 ## Setup
 
