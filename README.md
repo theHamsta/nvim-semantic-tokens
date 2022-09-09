@@ -28,7 +28,7 @@ Use an autocommand for a filetype for which you have a language server set up th
 
 ```vim
 if &filetype == "cpp" || &filetype == "cuda" || &filetype == "c"
-  autocmd BufEnter,CursorHold,InsertLeave <buffer> lua require 'vim.lsp.buf'.semantic_tokens_full()
+  autocmd BufEnter,TextChanged <buffer> lua require 'vim.lsp.buf'.semantic_tokens_full()
 endif
 ```
 
@@ -38,7 +38,16 @@ or inside an `on_attach` call to a LSP client
 local on_attach = function(client, bufnr)
     local caps = client.server_capabilities
     if caps.semanticTokensProvider and caps.semanticTokensProvider.full then
-        vim.cmd [[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.buf.semantic_tokens_full()]]
+      local augroup = vim.api.nvim_create_augroup("SemanticTokens", {})
+      vim.api.nvim_create_autocmd("TextChanged", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.semantic_tokens_full()
+        end,
+      })
+      -- fire it first time on load as well
+      vim.lsp.buf.semantic_tokens_full()
     end
     --...
 end
