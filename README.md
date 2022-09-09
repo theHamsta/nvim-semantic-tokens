@@ -50,4 +50,5 @@ end
 - rust-analyzer
 - sumneko-lua
 - pyright
+- tsserver
 - ...
