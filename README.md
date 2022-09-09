@@ -10,7 +10,7 @@ Neovim is still required.
 
 ```lua
 require("nvim-semantic-tokens").setup {
-  preset = "default"
+  preset = "default",
   -- highlighters is a list of modules following the interface of nvim-semantic-tokens.table-highlighter or 
   -- function with the signature: highlight_token(ctx, token, highlight) where 
   --        ctx (as defined in :h lsp-handler)
