@@ -83,6 +83,7 @@ function M.extend_capabilities(caps)
       "number",
       "regexp",
       "operator",
+      "decorator",
     },
     tokenModifiers = {
       "declaration",

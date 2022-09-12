@@ -23,6 +23,7 @@ semantic_tokens.token_map = {
   number = "LspNumber",
   regexp = "LspRegexp",
   operator = "LspOperator",
+  decorator = "LspDecorator",
 }
 
 semantic_tokens.modifiers_map = {
