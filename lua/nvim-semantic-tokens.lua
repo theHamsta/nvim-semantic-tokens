@@ -1,5 +1,6 @@
 local M = {}
 local highlighters = {}
+local priority = 0
 
 local utils = require "nvim-semantic-tokens.utils"
 local _, semantic_tokens = pcall(require, "vim.lsp.semantic_tokens")
@@ -36,7 +37,7 @@ local function highlight(ctx, token, hl)
     end_col = math.min(end_byte, #line_str),
     hl_group = hl,
     -- Highlights from tree-sitter have priority 100, set priority for semantic tokens just above that
-    priority = 110,
+    priority = priority,
   })
 end
 
@@ -126,6 +127,7 @@ function M.setup(config)
       h.reset()
     end
   end
+  priority = config.priority or 110
 end
 
 return M
