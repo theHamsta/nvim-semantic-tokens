@@ -56,7 +56,7 @@ end
 function M.on_full(err, response, ctx, config)
   active_requests[ctx.bufnr] = false
   local client = vim.lsp.get_client_by_id(ctx.client_id)
-  if not client then
+  if not client or not vim.api.nvim_buf_is_loaded(ctx.bufnr) then
     return
   end
   -- if tick has changed our response is outdated!
