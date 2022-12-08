@@ -1,3 +1,7 @@
+# Important Hint: Semantic Token Support Now Merged to Nightly Neovim: https://github.com/neovim/neovim/pull/21100
+
+Neovim 0.9 will officially support SemanticTokens. See `:h lsp-semantic_tokens` on Neovim 0.9!
+
 # nvim-semantic-tokens
 
 This is a reference plugin to assist the development of https://github.com/neovim/neovim/pull/15723
